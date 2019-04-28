@@ -1,54 +1,48 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div class="container"> 
+<div class="container">
 
-<div class='card'>
-  <div class='card-header'>
-    {{pageTitle}}
-  </div>
-  <div class='card-body'>
-    <div class="form-group mx-sm-3 mb-2">
-      <label>Data : </label>
-      <input #data="ngModel" required type="text" [(ngModel)]='mydata' class="form-control">
-      <label *ngIf="data.invalid" style="color: red">
-        Data is required 
-      </label>
+  <div class='card'>
+    <div class='card-header'>
+      {{pageTitle}}
     </div>
-  
-
-    <hr>
-
-<div class='table-responsive'>
-      <table class='table' *ngIf='List.length'>
-        <thead>
-          <tr>
-
-       <th *ngFor='let product of List'>{{product.name}}</th>
-    
+    <div class='card-body'>
+      <div class="form-group mx-sm-3 mb-2">
+        <label>Data : </label>
+        <input #data="ngModel" required type="text" [(ngModel)]='mydata' class="form-control">
+        <label *ngIf="data.invalid" style="color: red">
+          Data is required
+        </label>
+      </div>
 
 
-          </tr>
-        </thead>
-        <tbody>
-          
+      <hr>
 
-        
-        </tbody>
-      </table>
-    </div>
+
+
+      <div class="row">
+        <div class="col-md-4" *ngFor='let product of Result'>
+          <hr>
+          <h3 *ngFor='let item of product' >
+          {{item}} <br>
+          <hr>
+            </h3> 
+
+        </div>
+        <hr>
+      </div>
+     
+      </div>
 
     
+    <div class="card-footer">
+
+      <button class="btn btn-outline-secondary" style="float: right" (click)="Read(data.invalid)">
+        Read
+      </button>
+
+
+    </div>
 
   </div>
-
-  <div class="card-footer">
-
-    <button class="btn btn-outline-secondary" style="float: right" (click)="Read(data.invalid)">
-      Read
-</button>
-
- 
-  </div>
-
-</div>
 </div>
 <router-outlet></router-outlet>
