@@ -1,0 +1,1 @@
+[{"ID":0,"name":"age","regularExpression":"(?<=,)\\s*?\\d+\\s*?(?=,)"},{"ID":1,"name":"name","regularExpression":"\\bt[a-z]+\\b"}]
