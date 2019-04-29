@@ -9,27 +9,41 @@
       <div class="form-group mx-sm-3 mb-2">
         <label>Data : </label>
         <input #data="ngModel" required type="text" [(ngModel)]='mydata' class="form-control">
-        <label *ngIf="data.invalid" style="color: red">
+        <label style="color: red" id="labelError" style="display: none">
           Data is required
         </label>
       </div>
 
 
-      <hr>
+   <br>
 
-
-
-      <div class="row">
-        <div class="col-md-4" *ngFor='let product of Result'>
-          <hr>
-          <h3 *ngFor='let item of product' >
-          {{item}} <br>
-          <hr>
-            </h3> 
-
-        </div>
-        <hr>
+      <div class='table-responsive'>
+        <table class='table' *ngIf='AttributesList.length'>
+          <thead>
+            <tr>
+  
+              <th>Name</th>
+              <th>Value</th>
+  
+            
+  
+  
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor='let item of Result'>
+  
+              <td> {{item.name|titlecase}} </td>
+              <td> {{item.value}} </td>
+             
+  
+            </tr>
+          </tbody>
+        </table>
       </div>
+
+
+   
      
       </div>
 

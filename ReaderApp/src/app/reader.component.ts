@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { GetConfigService } from './get-config.service';
 
-import * as $ from 'jquery';
-import { identifierModuleUrl } from '@angular/compiler';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -16,11 +15,11 @@ export class AppComponent {
   /**
    * List  of app component
    */
-  List: IAttributes[] = [];
+  AttributesList: IAttributes[] = [];
   /**
    * Mydata  of app component
    */
-  mydata: string;
+  entredData: string;
   /**
    * Error message of app component
    */
@@ -40,7 +39,7 @@ export class AppComponent {
 
       this.service.getConfig().subscribe(
         products => {
-          this.List = products;
+          this.AttributesList = products;
 
         },
         error => this.errorMessage = <any>error
@@ -63,34 +62,39 @@ export class AppComponent {
    * @param datavalidator 
    */
   Read(datavalidator: boolean): void {
-    try { if (!datavalidator) {
-      var spiltdata = this.mydata.split(' ');
-      var tempList = new Array();
-
-     
-
-        for (var i = 0; i < this.List.length; i++) {
-          var temp = new Array();
-          temp.push(this.List[i].name);
-          for (var j = 0; j < spiltdata.length; j++) {
-            var regualr = new RegExp(this.List[i].regularExpression)
-            if (regualr.test(spiltdata[j])) {
-              temp.push(spiltdata[j]);
-            }
-
-          }
-          tempList.push(temp);
+    try {
+      if (!datavalidator) {
 
 
+
+        for (var i = 0; i < this.AttributesList.length; i++) {
+          var regualr = new RegExp(this.AttributesList[i].regularExpression)
+          var matchingItem = regualr.exec(this.entredData);
+
+          var item = { name: this.AttributesList[i].name, value: matchingItem[0] };
+          this.Result.push(item);
 
         }
-        this.Result = tempList;
 
-        console.log(this.Result);
+
+        document.getElementById("labelError").style.display = "none";
+
+
+
+
+
+
+
+
+
+
+
+
       }
-
-
-
+      else {
+        document.getElementById("labelError").style.display = "block";
+        document.getElementById("labelError").style.color = "red";
+      }
     }
     catch (err) {
       console.log(err);
