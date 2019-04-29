@@ -65,21 +65,21 @@ export class AppComponent {
     try {
       if (!datavalidator) {
 
-
-
-        for (var i = 0; i < this.AttributesList.length; i++) {
+  var tempList = new Array();
+  this.Result=tempList;
+      
+        for(var i=0; i<this.AttributesList.length;i++)
+        {
           var regualr = new RegExp(this.AttributesList[i].regularExpression)
-          var matchingItem = regualr.exec(this.entredData);
-
-          var item = { name: this.AttributesList[i].name, value: matchingItem[0] };
-          this.Result.push(item);
-
+         var matchingItem= regualr.exec(this.entredData);
+    
+         var item = {name:this.AttributesList[i].name, value:matchingItem};
+          tempList.push(item);
+         
         }
 
-
-        document.getElementById("labelError").style.display = "none";
-
-
+this.Result=tempList;
+document.getElementById("labelError").style.display="none";
 
 
 
@@ -88,14 +88,17 @@ export class AppComponent {
 
 
 
+        
+         
 
 
-      }
-      else {
-        document.getElementById("labelError").style.display = "block";
-        document.getElementById("labelError").style.color = "red";
-      }
     }
+    else 
+    {
+      document.getElementById("labelError").style.display="block";
+      document.getElementById("labelError").style.color="red";
+    }
+  }
     catch (err) {
       console.log(err);
     }
