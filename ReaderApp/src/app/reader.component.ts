@@ -17,7 +17,7 @@ export class AppComponent {
    */
   AttributesList: IAttributes[] = [];
   /**
-   * Mydata  of app component
+   * entred Data  of app component
    */
   entredData: string;
   /**
